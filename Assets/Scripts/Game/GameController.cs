@@ -15,13 +15,11 @@ namespace Game
         [SerializeField] private TriggerCollisionDetector _target;
 
         private Vector3 _targetPosition;
-        private bool _paused;
         private Timer _timer;
-        private bool _hasFinished;
 
         private void Start()
         {
-            Time.timeScale = 1;
+            GameState.Reset();
 
             this._inputListener.OnHit += OnHit;
 
@@ -41,18 +39,6 @@ namespace Game
             _timer.InitTimer(60, OnTimeChanged, OnTimerFinish);
         }
 
-        public void Pause()
-        {
-            Time.timeScale = 0;
-            this._paused = true;
-        }
-
-        public void Unpause()
-        {
-            Time.timeScale = 1;
-            this._paused = false;
-        }
-
         /// <summary>
         /// Move the target to preset position by index
         /// </summary>
@@ -65,7 +51,6 @@ namespace Game
             this._target.OnTrigger += OnTargetCollied;
         }
 
-        
         /// <summary>
         /// Invokes when target object was collied with something
         /// </summary>
@@ -87,7 +72,7 @@ namespace Game
         private void Finish()
         {
             this._timer.Stop();
-            this._hasFinished = true;
+            GameState.Finishe();
         }
 
         /// <summary>
@@ -122,15 +107,10 @@ namespace Game
         /// <param name="hit">hit info</param>
         private void OnHit(RaycastHit hit)
         {
-            if (!this._paused && !_hasFinished)
+            if (!GameState.Paused && !GameState.HasFinished)
             {
-                //if enemy was taped
-                if (hit.collider.tag == "Enemy")
-                {
-                    //kill enemy
-                    EnemyController.Instance.KillEnemy(hit.collider.gameObject.GetComponent<Enemy>());
-                }
-                else
+                //if enemy wasn't taped
+                if (hit.collider.tag != "Enemy")
                 {
                     //set for players new position to follow
                     PlayerController.Instance.SetTarget(hit.point);

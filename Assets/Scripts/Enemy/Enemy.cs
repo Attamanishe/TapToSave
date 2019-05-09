@@ -4,6 +4,8 @@ using UnityEngine;
 public class Enemy : Player
 {
     public event Action<Enemy> OnLostTarget;
+    public event Action<Enemy> OnEnemyClicked;
+    
     private Player _target;
 
     /// <summary>
@@ -35,6 +37,14 @@ public class Enemy : Player
             {
                 this._target.Kill();
             }
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (OnEnemyClicked != null)
+        {
+            OnEnemyClicked.Invoke(this);
         }
     }
 }

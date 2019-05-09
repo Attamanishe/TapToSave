@@ -16,8 +16,6 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _timeLeft;
 
-        private bool _paused;
-
         private void Start()
         {
             this._pause.onClick.AddListener(PauseClicked);
@@ -46,16 +44,14 @@ namespace UI
 
         private void PauseClicked()
         {
-            if (this._paused)
+            if (GameState.Paused)
             {
-                GameController.Instance.Unpause();
+                GameState.Unpause();
             }
             else
             {
-                GameController.Instance.Pause();
+                GameState.Pause();
             }
-
-            this._paused = !this._paused;
         }
     }
 }

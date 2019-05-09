@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using Help;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -78,6 +79,14 @@ public class EnemyController : Singleton<EnemyController>
                                       }
                                   };
 
+            enemy.OnEnemyClicked += e =>
+                                    {
+                                        if (!GameState.Paused && !GameState.HasFinished)
+                                        {
+                                            KillEnemy(e);
+                                        }
+                                    };
+
             this._enemies.Add(enemy);
         }
     }
@@ -132,6 +141,6 @@ public class EnemyController : Singleton<EnemyController>
             }
 
             time = delay;
-        } while (player != null);
+        } while (!GameState.HasFinished);
     }
 }

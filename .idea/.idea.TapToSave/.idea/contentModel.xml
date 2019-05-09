@@ -30,6 +30,7 @@
           </e>
           <e p="Game" t="Include">
             <e p="GameController.cs" t="Include" />
+            <e p="GameState.cs" t="Include" />
           </e>
           <e p="Help" t="Include">
             <e p="LoadLevelHelper.cs" t="Include" />

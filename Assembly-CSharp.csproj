@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Game\GameController.cs" />
+    <Compile Include="Assets\Scripts\Game\GameState.cs" />
     <Compile Include="Assets\Scripts\Help\LoadLevelHelper.cs" />
     <Compile Include="Assets\Scripts\Help\Singleton.cs" />
     <Compile Include="Assets\Scripts\Help\Timer.cs" />
