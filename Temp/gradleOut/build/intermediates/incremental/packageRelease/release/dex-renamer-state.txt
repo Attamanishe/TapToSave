@@ -1,4 +1,4 @@
-#Fri May 10 00:00:24 EEST 2019
+#Fri May 10 00:15:00 EEST 2019
 base.0=/Users/macbookpro/Projects/TapToSave/Temp/gradleOut/build/intermediates/transforms/dex/release/0
 path.0=classes.dex
 renamed.0=classes.dex

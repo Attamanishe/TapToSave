@@ -121,26 +121,23 @@ public class EnemyController : Singleton<EnemyController>
     /// <returns></returns>
     private IEnumerator SpawnEnemy(float delay, int spawnCount)
     {
-        Player player;
-        float time = 0;
-
         do
         {
-            while (time > 0)
-            {
-                time -= Time.deltaTime;
-                yield return null;
-            }
-
             //get the random player for detect the position enemies should spawn around
-            player = PlayerController.Instance.GetRandomPlayer();
+            Player player = PlayerController.Instance.GetRandomPlayer();
 
             if (player != null)
             {
                 SpawnGroup(spawnCount, player.transform.position, 20);
             }
 
-            time = delay;
+            float time = delay;
+
+            while (time > 0)
+            {
+                time -= Time.deltaTime;
+                yield return null;
+            }
         } while (!GameState.HasFinished);
     }
 }
